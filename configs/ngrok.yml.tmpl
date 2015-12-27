@@ -12,6 +12,8 @@ tunnels:
     proto: http
     addr: {{ .Env.COUCHPOTATO_PORT }}
     bind_tls: {{ .Env.TLS }}
+    {{ if has_key .Env "COUCHPOTATO_CERT" }}crt: /ssl/{{ .Env.COUCHPOTATO_CERT }}{{ end }}
+    {{ if has_key .Env "COUCHPOTATO_KEY" }}key: /ssl/{{ .Env.COUCHPOTATO_KEY }}{{ end }}
     {{ if has_key .Env "DOMAIN" }}hostname: couchpotato.{{ .Env.DOMAIN }}{{ end }}
     {{ if has_key .Env "COUCHPOTATO_AUTH" }}auth: {{ .Env.COUCHPOTATO_AUTH }}{{ end }}
 {{ end }}{{ if eql .Env.SICKRAGE_ENABLED "yes" }}
@@ -20,6 +22,8 @@ tunnels:
     proto: http
     addr: {{ .Env.SICKRAGE_PORT }}
     bind_tls: {{ .Env.TLS }}
+    {{ if has_key .Env "SICKRAGE_CERT" }}crt: /ssl/{{ .Env.SICKRAGE_CERT }}{{ end }}
+    {{ if has_key .Env "SICKRAGE_KEY" }}key: /ssl/{{ .Env.SICKRAGE_KEY }}{{ end }}
     {{ if has_key .Env "DOMAIN" }}hostname: sickrage.{{ .Env.DOMAIN }}{{ end }}
     {{ if has_key .Env "SICKRAGE_AUTH" }}auth: {{ .Env.SICKRAGE_AUTH }}{{ end }}
 {{ end }}{{ if eql .Env.PLEX_ENABLED "yes" }}
@@ -28,6 +32,8 @@ tunnels:
     proto: http
     addr: {{ .Env.PLEX_PORT }}
     bind_tls: {{ .Env.TLS }}
+    {{ if has_key .Env "PLEX_CERT" }}crt: /ssl/{{ .Env.PLEX_CERT }}{{ end }}
+    {{ if has_key .Env "PLEX_KEY" }}key: /ssl/{{ .Env.PLEX_KEY }}{{ end }}
     {{ if has_key .Env "DOMAIN" }}hostname: plex.{{ .Env.DOMAIN }}{{ end }}
     {{ if has_key .Env "PLEX_AUTH" }}auth: {{ .Env.PLEX_AUTH }}{{ end }}
 {{ end }}{{ if has_key .Env "SSH_REMOTE_ADDR" }}
